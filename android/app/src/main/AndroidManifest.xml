@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.donate_meal">
+    package="com.encoderBytes.donate_mealAndAnalysis">
    <application
         android:label="donate_meal"
         android:icon="@mipmap/ic_launcher">

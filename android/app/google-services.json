@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "155722988660",
+    "project_id": "donate-meal-and-analysis",
+    "storage_bucket": "donate-meal-and-analysis.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:155722988660:android:9c8bcbed65dfb06d396521",
+        "android_client_info": {
+          "package_name": "com.encoderBytes.donate_mealAndAnalysis"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "155722988660-2mbe42ho3nqf1rq7e59ctn509s4nm4fd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDtLqQpPe_pkRSROa96KfPl3PzU2tCYuZA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "155722988660-2mbe42ho3nqf1rq7e59ctn509s4nm4fd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
