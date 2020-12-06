@@ -4,23 +4,6 @@
             "outputFile": "E:\\Flutter Projects New\\donate_meal_and_analysis-Encoder-Bytes\\build\\app\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-nl\\values-nl.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\aizaz\\.gradle\\caches\\transforms-2\\files-2.1\\c0657f060bbaaf69778119b703f4b5fa\\appcompat-1.0.0\\res\\values-nl\\values-nl.xml",
-                    "from": {
-                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "105,223,328,435,521,629,749,826,903,995,1089,1190,1284,1385,1479,1575,1670,1762,1854,1936,2047,2151,2250,2365,2478,2581,2736,2839",
-                        "endColumns": "117,104,106,85,107,119,76,76,91,93,100,93,100,93,95,94,91,91,81,110,103,98,114,112,102,154,102,81",
-                        "endOffsets": "218,323,430,516,624,744,821,898,990,1084,1185,1279,1380,1474,1570,1665,1757,1849,1931,2042,2146,2245,2360,2473,2576,2731,2834,2916"
-                    },
-                    "to": {
-                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,34",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "105,223,328,435,521,629,749,826,903,995,1089,1190,1284,1385,1479,1575,1670,1762,1854,1936,2047,2151,2250,2365,2478,2581,2736,3454",
-                        "endColumns": "117,104,106,85,107,119,76,76,91,93,100,93,100,93,95,94,91,91,81,110,103,98,114,112,102,154,102,81",
-                        "endOffsets": "218,323,430,516,624,744,821,898,990,1084,1185,1279,1380,1474,1570,1665,1757,1849,1931,2042,2146,2245,2360,2473,2576,2731,2834,3531"
-                    }
-                },
-                {
                     "source": "C:\\Users\\aizaz\\.gradle\\caches\\transforms-2\\files-2.1\\44b1706abe044cd42dcac5be863451ed\\core-1.1.0\\res\\values-nl\\values-nl.xml",
                     "from": {
                         "startLines": "2",
@@ -30,15 +13,15 @@
                         "endOffsets": "151"
                     },
                     "to": {
-                        "startLines": "35",
+                        "startLines": "20",
                         "startColumns": "4",
-                        "startOffsets": "3536",
+                        "startOffsets": "2900",
                         "endColumns": "100",
-                        "endOffsets": "3632"
+                        "endOffsets": "2996"
                     }
                 },
                 {
-                    "source": "C:\\Users\\aizaz\\.gradle\\caches\\transforms-2\\files-2.1\\91ba5556e6298af13c0675781960f340\\jetified-play-services-basement-17.0.0\\res\\values-nl\\values.xml",
+                    "source": "C:\\Users\\aizaz\\.gradle\\caches\\transforms-2\\files-2.1\\2fc163401662c8efd047979f52b9cbb8\\jetified-play-services-basement-17.1.0\\res\\values-nl\\values.xml",
                     "from": {
                         "startLines": "4",
                         "startColumns": "0",
@@ -47,28 +30,28 @@
                         "endOffsets": "448"
                     },
                     "to": {
-                        "startLines": "29",
+                        "startLines": "10",
                         "startColumns": "4",
-                        "startOffsets": "2839",
+                        "startOffsets": "1292",
                         "endColumns": "201",
-                        "endOffsets": "3036"
+                        "endOffsets": "1489"
                     }
                 },
                 {
-                    "source": "C:\\Users\\aizaz\\.gradle\\caches\\transforms-2\\files-2.1\\88dbb7d8300cb43c9b5adb3a07c755e4\\browser-1.2.0\\res\\values-nl\\values-nl.xml",
+                    "source": "C:\\Users\\aizaz\\.gradle\\caches\\transforms-2\\files-2.1\\12b2a981af48a4d34665a895e1a50203\\play-services-base-17.1.0\\res\\values-nl\\values.xml",
                     "from": {
-                        "startLines": "2,3,4,5",
-                        "startColumns": "4,4,4,4",
-                        "startOffsets": "55,158,259,370",
-                        "endColumns": "102,100,110,97",
-                        "endOffsets": "153,254,365,463"
+                        "startLines": "4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20",
+                        "startColumns": "0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0",
+                        "startOffsets": "245,353,540,668,777,1003,1128,1277,1408,1645,1749,1949,2073,2295,2503,2597,2686",
+                        "endColumns": "107,186,127,108,225,124,148,130,236,103,199,123,221,207,93,88,103",
+                        "endOffsets": "352,539,667,776,1002,1127,1276,1407,1644,1748,1948,2072,2294,2502,2596,2685,2789"
                     },
                     "to": {
-                        "startLines": "30,31,32,33",
-                        "startColumns": "4,4,4,4",
-                        "startOffsets": "3041,3144,3245,3356",
-                        "endColumns": "102,100,110,97",
-                        "endOffsets": "3139,3240,3351,3449"
+                        "startLines": "2,3,4,5,6,7,8,9,11,12,13,14,15,16,17,18,19",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "105,217,404,536,649,875,1004,1157,1494,1731,1839,2039,2167,2389,2601,2699,2792",
+                        "endColumns": "111,186,131,112,225,128,152,134,236,107,199,127,221,211,97,92,107",
+                        "endOffsets": "212,399,531,644,870,999,1152,1287,1726,1834,2034,2162,2384,2596,2694,2787,2895"
                     }
                 }
             ]

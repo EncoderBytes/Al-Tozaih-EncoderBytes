@@ -1,5 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.encoderBytes.donate_mealAndAnalysis">
+
+    <uses-permission android:name="android.permission.INTERNET"/>
    <application
         android:label="donate_meal"
         android:icon="@mipmap/ic_launcher">
