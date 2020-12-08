@@ -4,24 +4,24 @@
             "outputFile": "E:\\Flutter Projects New\\donate_meal_and_analysis-Encoder-Bytes\\build\\app\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-th\\values-th.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\aizaz\\.gradle\\caches\\transforms-2\\files-2.1\\2fc163401662c8efd047979f52b9cbb8\\jetified-play-services-basement-17.1.0\\res\\values-th\\values.xml",
+                    "source": "C:\\Users\\aizaz\\.gradle\\caches\\transforms-2\\files-2.1\\a9bb833f638dbc7f5cd8bc7f2b260f34\\core-1.2.0\\res\\values-th\\values-th.xml",
                     "from": {
-                        "startLines": "4",
-                        "startColumns": "0",
-                        "startOffsets": "247",
-                        "endColumns": "187",
-                        "endOffsets": "434"
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
                     },
                     "to": {
-                        "startLines": "10",
+                        "startLines": "20",
                         "startColumns": "4",
-                        "startOffsets": "1233",
-                        "endColumns": "187",
-                        "endOffsets": "1416"
+                        "startOffsets": "2718",
+                        "endColumns": "100",
+                        "endOffsets": "2814"
                     }
                 },
                 {
-                    "source": "C:\\Users\\aizaz\\.gradle\\caches\\transforms-2\\files-2.1\\12b2a981af48a4d34665a895e1a50203\\play-services-base-17.1.0\\res\\values-th\\values.xml",
+                    "source": "C:\\Users\\aizaz\\.gradle\\caches\\transforms-2\\files-2.1\\c7bf2bf666df0d106e3c35a59a3c937c\\play-services-base-17.2.1\\res\\values-th\\values.xml",
                     "from": {
                         "startLines": "4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20",
                         "startColumns": "0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0",
@@ -38,20 +38,20 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\aizaz\\.gradle\\caches\\transforms-2\\files-2.1\\44b1706abe044cd42dcac5be863451ed\\core-1.1.0\\res\\values-th\\values-th.xml",
+                    "source": "C:\\Users\\aizaz\\.gradle\\caches\\transforms-2\\files-2.1\\673a19520cfd392816c0101738f31dad\\jetified-play-services-basement-17.2.1\\res\\values-th\\values.xml",
                     "from": {
-                        "startLines": "2",
-                        "startColumns": "4",
-                        "startOffsets": "55",
-                        "endColumns": "100",
-                        "endOffsets": "151"
+                        "startLines": "4",
+                        "startColumns": "0",
+                        "startOffsets": "247",
+                        "endColumns": "187",
+                        "endOffsets": "434"
                     },
                     "to": {
-                        "startLines": "20",
+                        "startLines": "10",
                         "startColumns": "4",
-                        "startOffsets": "2718",
-                        "endColumns": "100",
-                        "endOffsets": "2814"
+                        "startOffsets": "1233",
+                        "endColumns": "187",
+                        "endOffsets": "1416"
                     }
                 }
             ]

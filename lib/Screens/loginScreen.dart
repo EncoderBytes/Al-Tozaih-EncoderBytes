@@ -4,6 +4,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:modal_progress_hud/modal_progress_hud.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -11,19 +12,23 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  bool _loading = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      body: Container(
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              FlutterLogo(size: 150),
-              SizedBox(height: 50),
-              _signInButton(),
-            ],
+      body: ModalProgressHUD(
+        inAsyncCall: _loading,
+        child: Container(
+          child: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                FlutterLogo(size: 150),
+                SizedBox(height: 50),
+                _signInButton(),
+              ],
+            ),
           ),
         ),
       ),
@@ -34,8 +39,15 @@ class _LoginScreenState extends State<LoginScreen> {
     return OutlineButton(
       splashColor: Colors.grey,
       onPressed: () {
+        setState(() {
+          _loading = true;
+        });
         signInWithGoogle().then((result) {
           if (result != null) {
+            setState(() {
+              _loading = false;
+            });
+            Navigator.pop(context);
             Get.to(PostFoodScreen());
           }
         });
@@ -98,11 +110,5 @@ class _LoginScreenState extends State<LoginScreen> {
     }
 
     return null;
-  }
-
-  Future<void> signOutGoogle() async {
-    await googleSignIn.signOut();
-
-    print("User Signed Out");
   }
 }
