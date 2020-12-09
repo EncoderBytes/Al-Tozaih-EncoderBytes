@@ -2,6 +2,18 @@
   "configVersion": 2,
   "packages": [
     {
+      "name": "archive",
+      "rootUri": "file:///C:/Users/aizaz/AppData/Local/Pub/Cache/hosted/pub.dartlang.org/archive-2.0.13",
+      "packageUri": "lib/",
+      "languageVersion": "2.0"
+    },
+    {
+      "name": "args",
+      "rootUri": "file:///C:/Users/aizaz/AppData/Local/Pub/Cache/hosted/pub.dartlang.org/args-1.6.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.3"
+    },
+    {
       "name": "async",
       "rootUri": "file:///C:/Users/aizaz/AppData/Local/Pub/Cache/hosted/pub.dartlang.org/async-2.5.0-nullsafety.3",
       "packageUri": "lib/",
@@ -152,6 +164,12 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "flutter_launcher_icons",
+      "rootUri": "file:///C:/Users/aizaz/AppData/Local/Pub/Cache/hosted/pub.dartlang.org/flutter_launcher_icons-0.8.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.3"
+    },
+    {
       "name": "flutter_plugin_android_lifecycle",
       "rootUri": "file:///C:/Users/aizaz/AppData/Local/Pub/Cache/hosted/pub.dartlang.org/flutter_plugin_android_lifecycle-1.0.11",
       "packageUri": "lib/",
@@ -230,6 +248,12 @@
       "languageVersion": "2.3"
     },
     {
+      "name": "image",
+      "rootUri": "file:///C:/Users/aizaz/AppData/Local/Pub/Cache/hosted/pub.dartlang.org/image-2.1.19",
+      "packageUri": "lib/",
+      "languageVersion": "2.0"
+    },
+    {
       "name": "image_picker",
       "rootUri": "file:///C:/Users/aizaz/AppData/Local/Pub/Cache/hosted/pub.dartlang.org/image_picker-0.6.7+14",
       "packageUri": "lib/",
@@ -288,6 +312,12 @@
       "rootUri": "file:///C:/Users/aizaz/AppData/Local/Pub/Cache/hosted/pub.dartlang.org/pedantic-1.9.2",
       "packageUri": "lib/",
       "languageVersion": "2.1"
+    },
+    {
+      "name": "petitparser",
+      "rootUri": "file:///C:/Users/aizaz/AppData/Local/Pub/Cache/hosted/pub.dartlang.org/petitparser-3.1.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.7"
     },
     {
       "name": "plugin_platform_interface",
@@ -362,13 +392,25 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "xml",
+      "rootUri": "file:///C:/Users/aizaz/AppData/Local/Pub/Cache/hosted/pub.dartlang.org/xml-4.5.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.7"
+    },
+    {
+      "name": "yaml",
+      "rootUri": "file:///C:/Users/aizaz/AppData/Local/Pub/Cache/hosted/pub.dartlang.org/yaml-2.2.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.4"
+    },
+    {
       "name": "donate_meal",
       "rootUri": "../",
       "packageUri": "lib/",
       "languageVersion": "2.7"
     }
   ],
-  "generated": "2020-12-09T09:24:07.469214Z",
+  "generated": "2020-12-09T11:47:58.796890Z",
   "generator": "pub",
   "generatorVersion": "2.12.0-29.10.beta"
 }

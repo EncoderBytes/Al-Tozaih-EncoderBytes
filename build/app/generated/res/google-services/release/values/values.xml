@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="default_web_client_id" translatable="false">155722988660-2mbe42ho3nqf1rq7e59ctn509s4nm4fd.apps.googleusercontent.com</string>
+    <string name="gcm_defaultSenderId" translatable="false">155722988660</string>
+    <string name="google_api_key" translatable="false">AIzaSyDtLqQpPe_pkRSROa96KfPl3PzU2tCYuZA</string>
+    <string name="google_app_id" translatable="false">1:155722988660:android:9c8bcbed65dfb06d396521</string>
+    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyDtLqQpPe_pkRSROa96KfPl3PzU2tCYuZA</string>
+    <string name="google_storage_bucket" translatable="false">donate-meal-and-analysis.appspot.com</string>
+    <string name="project_id" translatable="false">donate-meal-and-analysis</string>
+</resources>

@@ -1,0 +1,14 @@
+[
+    {
+        "merged": "E:\\Flutter Projects New\\donate_meal_and_analysis-Encoder-Bytes\\build\\google_sign_in\\intermediates\\res\\merged\\release\\drawable-watch-v20\\common_google_signin_btn_text_light_normal.xml",
+        "source": "C:\\Users\\aizaz\\.gradle\\caches\\transforms-2\\files-2.1\\badc3b4ae881e343fd8a62f805149dd5\\jetified-play-services-auth-16.0.1\\res\\drawable-watch-v20\\common_google_signin_btn_text_light_normal.xml"
+    },
+    {
+        "merged": "E:\\Flutter Projects New\\donate_meal_and_analysis-Encoder-Bytes\\build\\google_sign_in\\intermediates\\res\\merged\\release\\drawable-watch-v20\\common_google_signin_btn_text_disabled.xml",
+        "source": "C:\\Users\\aizaz\\.gradle\\caches\\transforms-2\\files-2.1\\badc3b4ae881e343fd8a62f805149dd5\\jetified-play-services-auth-16.0.1\\res\\drawable-watch-v20\\common_google_signin_btn_text_disabled.xml"
+    },
+    {
+        "merged": "E:\\Flutter Projects New\\donate_meal_and_analysis-Encoder-Bytes\\build\\google_sign_in\\intermediates\\res\\merged\\release\\drawable-watch-v20\\common_google_signin_btn_text_dark_normal.xml",
+        "source": "C:\\Users\\aizaz\\.gradle\\caches\\transforms-2\\files-2.1\\badc3b4ae881e343fd8a62f805149dd5\\jetified-play-services-auth-16.0.1\\res\\drawable-watch-v20\\common_google_signin_btn_text_dark_normal.xml"
+    }
+]

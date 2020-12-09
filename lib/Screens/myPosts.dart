@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:donate_meal/Constants/kColors.dart';
+import 'package:donate_meal/Constants/showSnack.dart';
 import 'package:donate_meal/Screens/loginScreen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -12,17 +13,18 @@ class MyPostsScreen extends StatefulWidget {
 
 class _MyPostsScreenState extends State<MyPostsScreen> {
   Stream stream;
-  String _userId;
+  var _userId;
   final FirebaseAuth auth = FirebaseAuth.instance;
+  final List<int> listId = List();
 
   @override
   void initState() {
     super.initState();
     final User user = auth.currentUser;
-    final uid = user.uid;
-    print(uid);
-
-    if (uid != null) {
+    if (user != null) {
+      final uid = user.uid;
+      _userId = user.uid;
+      print(uid);
       stream = FirebaseFirestore.instance
           .collection('Posts')
           .where('userId', isEqualTo: uid)
@@ -186,23 +188,56 @@ class _MyPostsScreenState extends State<MyPostsScreen> {
                                               ),
                                               Container(
                                                 height: 30,
-                                                child: RaisedButton.icon(
-                                                  icon: Icon(
-                                                    Icons.access_time,
-                                                    color: Colors.white,
-                                                    size: 20,
-                                                  ),
-                                                  color: yellow,
-                                                  onPressed: () {
-                                                    // if (!listId
-                                                    //     .contains(index)) {}
-                                                    print(items['persons']);
-                                                    print(items['address']);
-                                                  },
-                                                  label: Text('Pending',
-                                                      style: TextStyle(
-                                                          color: Colors.white)),
-                                                ),
+                                                child: items['status'] ==
+                                                        'Pending'
+                                                    ? RaisedButton.icon(
+                                                        icon: Icon(
+                                                          Icons.access_time,
+                                                          color: Colors.white,
+                                                          size: 20,
+                                                        ),
+                                                        color: yellow,
+                                                        onPressed: () {
+                                                          try {
+                                                            final databaseReference =
+                                                                FirebaseFirestore
+                                                                    .instance;
+                                                            databaseReference
+                                                                .collection(
+                                                                    'Posts')
+                                                                .doc(items.id)
+                                                                .update({
+                                                              'status':
+                                                                  'Reserved'
+                                                            }).then((value) {
+                                                              KshowSnakbar(
+                                                                  'Donation complete',
+                                                                  'Thanks for donating and securing the food..');
+                                                            });
+                                                          } catch (e) {
+                                                            print(e.toString());
+                                                          }
+                                                        },
+                                                        label: Text(
+                                                            items['status'],
+                                                            style: TextStyle(
+                                                                color: Colors
+                                                                    .white)),
+                                                      )
+                                                    : RaisedButton.icon(
+                                                        icon: Icon(
+                                                          Icons.check,
+                                                          color: Colors.white,
+                                                          size: 20,
+                                                        ),
+                                                        color: Colors.green,
+                                                        onPressed: () {},
+                                                        label: Text(
+                                                            items['status'],
+                                                            style: TextStyle(
+                                                                color: Colors
+                                                                    .white)),
+                                                      ),
                                               ),
                                             ],
                                           ),

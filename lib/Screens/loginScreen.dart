@@ -24,7 +24,11 @@ class _LoginScreenState extends State<LoginScreen> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                FlutterLogo(size: 150),
+                Image.asset(
+                  'assets/app_logo.png',
+                  width: 200,
+                  height: 200,
+                ),
                 SizedBox(height: 50),
                 _signInButton(),
               ],

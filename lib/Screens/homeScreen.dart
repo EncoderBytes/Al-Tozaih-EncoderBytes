@@ -16,6 +16,10 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  // CollectionReference users = FirebaseFirestore.instance
+  //     .collection('Posts')
+  //     .where('status', isEqualTo: 'pending');
+
   Stream stream;
 
   @override
@@ -25,7 +29,7 @@ class _HomeScreenState extends State<HomeScreen> {
     // stream = users.snapshots();
     stream = FirebaseFirestore.instance
         .collection('Posts')
-        .where('status', isEqualTo: 'pending')
+        .where('status', isEqualTo: 'Pending')
         .snapshots();
   }
 
@@ -231,7 +235,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                                           );
                                                         });
                                                   },
-                                                  label: Text('Pending',
+                                                  label: Text(items['status'],
                                                       style: TextStyle(
                                                           color: Colors.white)),
                                                 ),
@@ -335,7 +339,7 @@ class _HomeScreenState extends State<HomeScreen> {
         'place': items['place'],
         'profilePhoto': items['profilePhoto'],
         'selected_place': items['selected_place'],
-        'status': 'Reserved',
+        'status': items['status'],
         'userId': items['userId'],
         'username': items['username'],
       }).then((value) {

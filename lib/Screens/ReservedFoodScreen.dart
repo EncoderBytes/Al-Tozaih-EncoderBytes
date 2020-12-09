@@ -12,28 +12,33 @@ class ReservedFoodScreen extends StatefulWidget {
 }
 
 class _ReservedFoodScreenState extends State<ReservedFoodScreen> {
+  final GlobalKey<ScaffoldState> scaffoldKey = new GlobalKey<ScaffoldState>();
   Stream stream;
   final FirebaseAuth auth = FirebaseAuth.instance;
-
+  var uid = '';
   @override
   void initState() {
     super.initState();
     final User user = auth.currentUser;
-    final uid = user.uid;
-    print(uid);
-    stream = FirebaseFirestore.instance
-        .collection('user_selected')
-        .doc(uid)
-        .collection('Posts')
-        .snapshots();
+    if (user != null) {
+      uid = user.uid;
+      stream = FirebaseFirestore.instance
+          .collection('users_selected')
+          .doc(uid)
+          .collection('Posts')
+          .snapshots();
+    } else {
+      Get.to(LoginScreen());
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: scaffoldKey,
       appBar: AppBar(
         backgroundColor: blue,
-        title: Text('You Reserved'),
+        title: Text('Reserved'),
       ),
       body: SafeArea(
         child: Stack(
@@ -41,21 +46,21 @@ class _ReservedFoodScreenState extends State<ReservedFoodScreen> {
             Container(
               child: StreamBuilder<QuerySnapshot>(
                 stream: stream,
-                builder: (BuildContext context,
-                    AsyncSnapshot<QuerySnapshot> snapshot) {
-                  dynamic items = snapshot.data;
+                builder: (context, snapshot) {
                   if (snapshot.hasError) {
                     return Center(child: Text('Somthing went wrong'));
                   }
                   if (snapshot.connectionState == ConnectionState.waiting) {
                     return Center(child: CircularProgressIndicator());
                   }
+                  if (!snapshot.hasData) {
+                    return Center(child: Text('No Data'));
+                  }
                   return ListView.builder(
                     shrinkWrap: true,
                     itemCount: snapshot.data.docs.length,
                     itemBuilder: (context, index) {
                       DocumentSnapshot items = snapshot.data.docs[index];
-
                       return Container(
                           padding: EdgeInsets.symmetric(horizontal: 10),
                           alignment: Alignment.topCenter,
@@ -182,23 +187,36 @@ class _ReservedFoodScreenState extends State<ReservedFoodScreen> {
                                               ),
                                               Container(
                                                 height: 30,
-                                                child: RaisedButton.icon(
-                                                  icon: Icon(
-                                                    Icons.access_time,
-                                                    color: Colors.white,
-                                                    size: 20,
-                                                  ),
-                                                  color: yellow,
-                                                  onPressed: () {
-                                                    // if (!listId
-                                                    //     .contains(index)) {}
-                                                    print(items['persons']);
-                                                    print(items['address']);
-                                                  },
-                                                  label: Text('Pending',
-                                                      style: TextStyle(
-                                                          color: Colors.white)),
-                                                ),
+                                                child: items['status'] ==
+                                                        'Pending'
+                                                    ? RaisedButton.icon(
+                                                        icon: Icon(
+                                                          Icons.access_time,
+                                                          color: Colors.white,
+                                                          size: 20,
+                                                        ),
+                                                        color: yellow,
+                                                        onPressed: () {},
+                                                        label: Text(
+                                                            items['status'],
+                                                            style: TextStyle(
+                                                                color: Colors
+                                                                    .white)),
+                                                      )
+                                                    : RaisedButton.icon(
+                                                        icon: Icon(
+                                                          Icons.check,
+                                                          color: Colors.white,
+                                                          size: 20,
+                                                        ),
+                                                        color: Colors.green,
+                                                        onPressed: () {},
+                                                        label: Text(
+                                                            items['status'],
+                                                            style: TextStyle(
+                                                                color: Colors
+                                                                    .white)),
+                                                      ),
                                               ),
                                             ],
                                           ),

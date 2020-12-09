@@ -476,7 +476,7 @@ class _PostFoodScreenState extends State<PostFoodScreen> {
       'address': _currentAddress,
       'mobile_number': mobileNumber,
       'desc': desc,
-      'status': 'pending',
+      'status': 'Pending',
       'image': downloadURL == null ? '' : downloadURL
     }).then((value) {
       KshowSnakbar('Data Saved', 'Your Post is Uploaded Successfully');

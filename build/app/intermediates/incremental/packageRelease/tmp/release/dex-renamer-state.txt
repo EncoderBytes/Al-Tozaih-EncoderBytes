@@ -1,0 +1,4 @@
+#Wed Dec 09 16:50:19 PKT 2020
+base.0=E\:\\Flutter Projects New\\donate_meal_and_analysis-Encoder-Bytes\\build\\app\\intermediates\\transforms\\r8\\release\\0\\classes.dex
+path.0=classes.dex
+renamed.0=classes.dex

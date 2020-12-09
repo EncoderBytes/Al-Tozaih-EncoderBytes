@@ -1,5 +1,6 @@
 import 'package:donate_meal/Screens/allTabsScreen.dart';
 import 'package:donate_meal/Screens/homeScreen.dart';
+import 'package:donate_meal/Screens/splashScreen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -27,7 +28,7 @@ class MyApp extends StatelessWidget {
         // Once complete, show your application
         if (snapshot.connectionState == ConnectionState.done) {
           return GetMaterialApp(
-            home: AllTabsScreen(),
+            home: SplashScreen(),
           );
         }
 
