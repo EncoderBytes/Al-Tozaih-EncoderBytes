@@ -1,10 +1,14 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:donate_meal/Constants/kColors.dart';
+import 'package:donate_meal/Constants/showSnack.dart';
 import 'package:donate_meal/Screens/postScreen.dart';
-import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
-import '../models/post.dart';
+import 'package:modal_progress_hud/modal_progress_hud.dart';
+
+import 'loginScreen.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -12,167 +16,246 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  final List<Post> myPost = posts;
+  Stream stream;
 
+  @override
+  void initState() {
+    super.initState();
+
+    // stream = users.snapshots();
+    stream = FirebaseFirestore.instance
+        .collection('Posts')
+        .where('status', isEqualTo: 'pending')
+        .snapshots();
+  }
+
+  IconData myIcon;
+  Color btnColor;
+  final List<int> listId = List<int>();
+  bool isLoading = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Colors.white,
-        body: SafeArea(
-          child: Stack(
+        appBar: AppBar(
+          backgroundColor: blue,
+          title: Text('Home'),
+        ),
+        body: ModalProgressHUD(
+          inAsyncCall: isLoading,
+          child: SafeArea(
+              child: Stack(
             children: [
-              Container(
-                padding: EdgeInsets.symmetric(horizontal: 10),
-                alignment: Alignment.topCenter,
-                child: ListView.builder(
-                  itemCount: myPost.length,
-                  itemBuilder: (context, int index) {
-                    return Padding(
-                      padding: const EdgeInsets.only(top: 15),
-                      child: Column(children: [
-                        Row(
-                          children: <Widget>[
-                            CircleAvatar(
-                              backgroundImage:
-                                  AssetImage(myPost[index].profileImage),
-                              radius: 20.0,
-                            ),
-                            SizedBox(width: 7.0),
-                            Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: <Widget>[
-                                Text(myPost[index].resturentName,
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 17.0)),
-                                SizedBox(height: 2.0),
-                                Text(
-                                  myPost[index].time,
-                                  style: TextStyle(fontSize: 13),
-                                )
-                              ],
-                            ),
-                          ],
-                        ),
-                        SizedBox(
-                          height: Get.height * 0.02,
-                        ),
-                        Container(
-                          color: Colors.white,
-                          width: Get.width * 1,
-                          height: Get.height * 0.51,
-                          child: Card(
-                            elevation: 5,
-                            shape: RoundedRectangleBorder(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(20))),
-                            child: Column(
-                              children: [
-                                Material(
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.only(
-                                      topLeft: Radius.circular(20),
-                                      topRight: Radius.circular(20)),
-                                  elevation: 2.0,
-                                  clipBehavior: Clip.antiAliasWithSaveLayer,
-                                  type: MaterialType.transparency,
-                                  child: Image.asset(
-                                    myPost[index].mealImage,
-                                    height: Get.height * 0.35,
-                                    width: Get.width,
-                                    fit: BoxFit.cover,
+              Container(),
+              StreamBuilder<QuerySnapshot>(
+                stream: stream,
+                builder: (BuildContext context,
+                    AsyncSnapshot<QuerySnapshot> snapshot) {
+                  dynamic items = snapshot.data;
+                  if (snapshot.hasError) {
+                    return Center(child: Text('Somthing went wrong'));
+                  }
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return Center(child: CircularProgressIndicator());
+                  }
+                  return ListView.builder(
+                    shrinkWrap: true,
+                    itemCount: snapshot.data.docs.length,
+                    itemBuilder: (context, index) {
+                      DocumentSnapshot items = snapshot.data.docs[index];
+
+                      return Container(
+                          padding: EdgeInsets.symmetric(horizontal: 10),
+                          alignment: Alignment.topCenter,
+                          child: Padding(
+                            padding: const EdgeInsets.only(top: 15),
+                            child: Column(children: [
+                              Row(
+                                children: <Widget>[
+                                  CircleAvatar(
+                                    backgroundImage:
+                                        NetworkImage(items['profilePhoto']),
+                                    radius: 20.0,
                                   ),
-                                ),
-                                SizedBox(
-                                  height: 4,
-                                ),
-                                Container(
-                                  padding: EdgeInsets.symmetric(
-                                      horizontal: 10, vertical: 8),
-                                  child: Row(
-                                    children: [
+                                  SizedBox(width: 7.0),
+                                  Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: <Widget>[
+                                      Text(items['username'],
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 17.0)),
+                                      SizedBox(height: 2.0),
                                       Container(
-                                          alignment: Alignment.topLeft,
-                                          child: RatingBar.builder(
-                                            itemSize: 15,
-                                            initialRating: myPost[index].rating,
-                                            minRating: 1,
-                                            direction: Axis.horizontal,
-                                            allowHalfRating: true,
-                                            itemCount: 5,
-                                            itemPadding: EdgeInsets.symmetric(
-                                                horizontal: 0.0),
-                                            itemBuilder: (context, _) => Icon(
-                                              Icons.star,
-                                              color: Colors.amber,
-                                            ),
-                                            onRatingUpdate: (rating) {
-                                              print(rating);
-                                            },
-                                          )),
-                                      Spacer(),
-                                      RichText(
-                                          text: TextSpan(
-                                              text: ' Meals for: ',
-                                              style: TextStyle(
-                                                color: Colors.black,
-                                                fontWeight: FontWeight.normal,
-                                                fontSize: 12,
-                                              ),
-                                              children: [
-                                            TextSpan(
-                                                text: myPost[index].persons,
-                                                style: TextStyle(
-                                                    fontWeight:
-                                                        FontWeight.bold)),
-                                            TextSpan(
-                                                text: ' persons',
-                                                style: TextStyle(
-                                                    fontWeight:
-                                                        FontWeight.normal)),
-                                          ]))
-                                    ],
-                                  ),
-                                ),
-                                SizedBox(
-                                  height: 10,
-                                ),
-                                Container(
-                                  alignment: Alignment.bottomLeft,
-                                  padding: EdgeInsets.symmetric(horizontal: 10),
-                                  child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Container(
-                                        height: 25,
-                                        child: RaisedButton(
-                                          onPressed: () {},
-                                          child: Text('Reserve'),
+                                        width:
+                                            MediaQuery.of(context).size.width *
+                                                0.8,
+                                        child: Text(
+                                          "${items['date'].toDate().toString().substring(0, 16)} | ${items['address']} ",
+                                          overflow: TextOverflow.ellipsis,
+                                          style: TextStyle(
+                                            fontSize: 12,
+                                          ),
                                         ),
-                                      ),
-                                      Icon(
-                                        FontAwesomeIcons.clock,
-                                        color: Colors.amber,
                                       )
                                     ],
                                   ),
-                                )
-                              ],
-                            ),
-                          ),
-                        )
-                      ]),
-                    );
-                  },
-                ),
+                                ],
+                              ),
+                              SizedBox(
+                                height: Get.height * 0.02,
+                              ),
+                              Container(
+                                color: Colors.white,
+                                width: Get.width * 1,
+                                child: Card(
+                                  elevation: 5,
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.all(
+                                          Radius.circular(20))),
+                                  child: Padding(
+                                    padding: const EdgeInsets.only(bottom: 20),
+                                    child: Column(
+                                      children: [
+                                        Material(
+                                          color: Colors.white,
+                                          borderRadius: BorderRadius.only(
+                                              topLeft: Radius.circular(20),
+                                              topRight: Radius.circular(20)),
+                                          elevation: 2.0,
+                                          clipBehavior:
+                                              Clip.antiAliasWithSaveLayer,
+                                          type: MaterialType.transparency,
+                                          child: (items['image'] == '')
+                                              ? null
+                                              : Image.network(
+                                                  items['image'],
+                                                  height: Get.height * 0.35,
+                                                  width: Get.width,
+                                                  fit: BoxFit.cover,
+                                                ),
+                                        ),
+                                        SizedBox(
+                                          height: 10,
+                                        ),
+                                        Container(
+                                          alignment: Alignment.topLeft,
+                                          padding: EdgeInsets.only(
+                                              left: 20, right: 20, top: 5),
+                                          child: Text(
+                                            '${items['place']}',
+                                            style: TextStyle(
+                                                fontSize: 18,
+                                                fontWeight: FontWeight.bold),
+                                          ),
+                                        ),
+                                        Container(
+                                            padding: EdgeInsets.only(
+                                                left: 20, right: 20, top: 5),
+                                            alignment: Alignment.topLeft,
+                                            child: Text(
+                                              items['desc'],
+                                              style: TextStyle(
+                                                  color: Colors.black87,
+                                                  fontSize: 15,
+                                                  fontWeight: FontWeight.w400),
+                                            )),
+                                        SizedBox(
+                                          height: 10,
+                                        ),
+                                        SizedBox(
+                                          height: 10,
+                                        ),
+                                        Container(
+                                          alignment: Alignment.bottomLeft,
+                                          padding: EdgeInsets.symmetric(
+                                              horizontal: 18),
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              Container(
+                                                padding: EdgeInsets.all(5),
+                                                decoration: BoxDecoration(
+                                                    border: Border.all(
+                                                      color: Colors.grey,
+                                                    ),
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            5)),
+                                                child: Text(
+                                                    'Food for : ${items['persons']} persons'),
+                                              ),
+                                              Container(
+                                                height: 30,
+                                                child: RaisedButton.icon(
+                                                  icon: Icon(
+                                                    Icons.access_time,
+                                                    color: Colors.white,
+                                                    size: 20,
+                                                  ),
+                                                  color: yellow,
+                                                  onPressed: () {
+                                                    showDialog(
+                                                        context: context,
+                                                        builder: (BuildContext
+                                                            context) {
+                                                          return AlertDialog(
+                                                            actions: [
+                                                              FlatButton(
+                                                                child:
+                                                                    Text("Yes"),
+                                                                onPressed: () {
+                                                                  createRecord(
+                                                                      items,
+                                                                      index);
+                                                                  Navigator.pop(
+                                                                      context);
+                                                                },
+                                                              ),
+                                                              FlatButton(
+                                                                child:
+                                                                    Text("No"),
+                                                                onPressed: () {
+                                                                  Navigator.pop(
+                                                                      context);
+                                                                },
+                                                              )
+                                                            ],
+                                                            title: Text(
+                                                                "Donate Food"),
+                                                            content: Text(
+                                                                "If you can pick this food within 1 Hour then press Yes "),
+                                                          );
+                                                        });
+                                                  },
+                                                  label: Text('Pending',
+                                                      style: TextStyle(
+                                                          color: Colors.white)),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              )
+                            ]),
+                          ));
+                    },
+                  );
+                },
               ),
               Positioned(
                 bottom: 15,
                 right: 15,
                 child: FloatingActionButton(
-                  backgroundColor: Colors.green[900],
+                  elevation: 5,
+                  backgroundColor: Color(0xffFAB500),
                   child: Icon(FontAwesomeIcons.plus),
                   onPressed: () {
                     _showMyDialog();
@@ -180,9 +263,11 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               )
             ],
-          )
+          )),
         ));
   }
+
+  Color _iconColor = Colors.black;
 
   Future<void> _showMyDialog() async {
     return showDialog<void>(
@@ -219,4 +304,75 @@ class _HomeScreenState extends State<HomeScreen> {
       },
     );
   }
+
+  loadingStop(bool status) {
+    setState(() {
+      isLoading = status;
+    });
+  }
+
+  void createRecord(DocumentSnapshot items, int index) async {
+    loadingStop(true);
+    final databaseReference = FirebaseFirestore.instance;
+    User _user = await FirebaseAuth.instance.currentUser;
+
+    if (_user != null) {
+      String uid = _user.uid;
+      await databaseReference
+          .collection('users_selected')
+          .doc(uid)
+          .collection('Posts')
+          .doc()
+          .set({
+        'address': items['address'],
+        'date': items['date'],
+        'desc': items['desc'],
+        'foodName': items['food_name'],
+        'image': items['image'],
+        'location': items['location'],
+        'mobile_number': items['mobile_number'],
+        'persons': items['persons'],
+        'place': items['place'],
+        'profilePhoto': items['profilePhoto'],
+        'selected_place': items['selected_place'],
+        'status': 'Reserved',
+        'userId': items['userId'],
+        'username': items['username'],
+      }).then((value) {
+        String itemId = items.id;
+        updateData(itemId);
+      });
+    } else {
+      loadingStop(false);
+      Get.to(LoginScreen());
+    }
+  }
+
+  void updateData(String id) {
+    try {
+      final databaseReference = FirebaseFirestore.instance;
+      databaseReference
+          .collection('Posts')
+          .doc(id)
+          .update({'status': 'Reserved'}).then((value) {
+        loadingStop(false);
+        KshowSnakbar(
+            'Completed', 'Food is Reserved.. please pick it up within 1 hour.');
+      });
+    } catch (e) {
+      print(e.toString());
+    }
+  }
 }
+/*
+
+          
+
+*/
+
+/*
+
+ 
+
+
+*/
